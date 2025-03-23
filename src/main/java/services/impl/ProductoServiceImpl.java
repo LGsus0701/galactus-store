@@ -23,4 +23,15 @@ public class ProductoServiceImpl implements ProductoService {
 		}
 	}
 
+	@Override
+    public Producto obtenerProductoPorId(int id) {
+		 try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
+	            ProductoMapper productoMapper = session.getMapper(ProductoMapper.class);
+	            return productoMapper.buscarPorId(id);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	}
+
 }
